@@ -1,0 +1,52 @@
+package standard;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Reservation {
+
+	public static void main(String[] args) throws IOException {
+
+		int i;
+		int count = 0;
+		boolean[] seatnum = new boolean[30];
+
+		// 既に予約されている座席(奇数)//
+		for (i = 0; i <= 29; i++) {
+			if (i % 2 == 0) {
+				seatnum[i] = true;
+				count += 1;
+			} else {
+				seatnum[i] = false;
+			}
+		}
+
+		System.out.println("ようこそ浅草ジャマイカホールへ!\n\n");
+
+		// 予約されている座席の数の確認
+		if (count == 0) {
+			System.out.println("完売しています");
+		} else if (count < 15) {
+			System.out.println("残りあと数席です。");
+		} else {
+			System.out.println("まだ余裕があります。");
+		}
+
+		// 予約始め
+		System.out.println("何番の座席を予約しますか? (1～30)");
+		System.out.print("<");
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		String str = reader.readLine();
+		int num = Integer.parseInt(str);
+
+		// 予約したい座席が空いているかどうか//
+		if (seatnum[num - 1] == true) {
+			System.out.println("座席の予約が完了しました。");
+		} else {
+			System.out.println("*予約済みの座席です。他の座席を選択しやがれください");
+		}
+	}
+}
