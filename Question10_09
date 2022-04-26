@@ -1,0 +1,19 @@
+package question10;
+
+public class Question10_09 {
+
+	public static void main(String[] args) {
+		int i, j;
+		int num;
+		for (i = 0; i < 5; i++) {
+			num = i + 1;
+			for (j = 0; j < 5; j++) {
+				if (j == num) {
+					break;
+				}
+				System.out.print("*" + " ");
+			}
+			System.out.println("\n");
+		}
+	}
+}
