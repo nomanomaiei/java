@@ -1,0 +1,73 @@
+package trainig;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Sekigae {
+	public static void main(String[] args) {
+
+                ArrayList<String> man = new ArrayList<String>();
+               
+                //男30人
+                man.add("伊藤晃　　");
+                man.add("宮井翼　　");
+                man.add("古川直輝　");
+                man.add("荻雅都　　");
+                man.add("柳下渉平　");
+                man.add("中林裕人　");
+                man.add("小澤竜一　");
+                man.add("畑航介　　");
+                man.add("内野晃希　");
+                man.add("早坂涼佑　");
+                man.add("野口太一　");
+                man.add("木下乱馬　");
+                man.add("安藤凌　　");
+                man.add("石井郁也　");
+                man.add("鈴木涼平　");
+                man.add("木村成芳　");
+                man.add("狩野尚輝　");
+                man.add("藤﨑康介　");
+                man.add("金丸碩孝　");
+                man.add("吉田龍太郎");
+                man.add("國吉功真　");
+                man.add("益戸優真　");
+                man.add("坂田陽和　");
+                man.add("栗林歩夢　");
+                man.add("原田大輔　");
+                man.add("鈴木亮佑　");
+                man.add("池田章平　");
+                man.add("谷口騎士　");
+                man.add("太田雄基　");
+                man.add("古田泰誠　");
+
+                ArrayList<String> woman = new ArrayList<String>();
+                //女16人
+                woman.add("出口奈央　");
+                woman.add("羽成美由紀");
+                woman.add("今井薫菜　");
+                woman.add("村上鈴佳　");
+                woman.add("浅沼芹菜　");
+                woman.add("齋藤凛々子");
+                woman.add("水上萌々子");
+                woman.add("滝田菜美　");
+                woman.add("松本希望　");
+                woman.add("林花音　　");
+                woman.add("伊達純夏　");
+                woman.add("金子真依　");
+                woman.add("楽満美優　");
+                woman.add("松崎麻美　");
+                woman.add("深田麻莉　");
+                woman.add("天野朋子　");
+
+                Collections.shuffle(man);
+                Collections.shuffle(woman);
+
+                System.out.println("--並び替え後--");
+                System.out.println(man.get(0)     + " | " + woman.get(1)   + " \t\t| " + man.get(6)   + " | "+ man.get(9)  +  " \t\t| "+ man.get(13) + " | "+ man.get(19) +  " \t\t| "+ man.get(24) +  " | "+ woman.get(1));
+                System.out.println(man.get(1)     + " | " + woman.get(2)   + " \t\t| " + man.get(7)   + " | "+ man.get(10) +  " \t\t| "+ man.get(14) + " | "+ man.get(20) +  " \t\t| "+ man.get(25) +  " | "+ woman.get(12));
+                System.out.println(man.get(2)     + " | " + man.get(4)     + " \t\t| " + woman.get(4) + " | "+ woman.get(7) + " \t\t| "+ man.get(15) + " | "+ man.get(21) +  " \t\t| "+ man.get(26) +  " | "+ woman.get(13));
+                System.out.println(woman.get(0)   + " | " + woman.get(3)   + " \t\t| " + woman.get(5) + " | "+ man.get(11)  + " \t\t| "+ man.get(16) + " | "+ man.get(22) +  " \t\t| "+ man.get(27) +  " | "+ man.get(29));
+                System.out.println(man.get(3)     + " | " + man.get(5)     + " \t\t| " + woman.get(6) + " | "+ woman.get(8) + " \t\t| "+ man.get(17) + " | "+ man.get(23) +  " \t\t| "+ woman.get(10)+ " | "+ woman.get(14));
+                System.out.println("\t　" + "\t　"+ " | " +"\t　"+"\t　　" + " \t\t| " + man.get(8)   + " | "+ man.get(12) +  " \t\t| "+ man.get(18) + " | "+ woman.get(9)+  " \t\t| "+ man.get(28) +  " | "+ woman.get(15)); 
+        }
+}
