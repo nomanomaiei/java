@@ -1,0 +1,71 @@
+package trainig;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Sekigae_random {
+	public static void main(String[] args) {
+
+                ArrayList<String> man = new ArrayList<String>();
+               
+                //男30人
+                man.add("伊藤 晃　　");
+                man.add("宮井 翼　　");
+                man.add("古川 直輝　");
+                man.add("荻 雅都　　");
+                man.add("柳下 渉平　");
+                man.add("中林 裕人　");
+                man.add("小澤 竜一　");
+                man.add("畑 航介　　");
+                man.add("内野 晃希　");
+                man.add("早坂 涼佑　");
+                man.add("野口 太一　");
+                man.add("木下 乱馬　");
+                man.add("安藤 凌　　");
+                man.add("石井 郁也　");
+                man.add("鈴木 涼平　");
+                man.add("木村 成芳　");
+                man.add("狩野 尚輝　");
+                man.add("藤﨑 康介　");
+                man.add("金丸 碩孝　");
+                man.add("吉田 龍太郎");
+                man.add("國吉 功真　");
+                man.add("益戸 優真　");
+                man.add("坂田 陽和　");
+                man.add("栗林 歩夢　");
+                man.add("原田 大輔　");
+                man.add("鈴木 亮佑　");
+                man.add("池田 章平　");
+                man.add("谷口 騎士　");
+                man.add("太田 雄基　");
+                man.add("古田 泰誠　");
+                
+                //女16人
+                man.add("出口 奈央　");
+                man.add("羽成 美由紀");
+                man.add("今井 薫菜　");
+                man.add("村上 鈴佳　");
+                man.add("浅沼 芹菜　");
+                man.add("齋藤 凛々子");
+                man.add("水上 萌々子");
+                man.add("滝田 菜美　");
+                man.add("松本 希望　");
+                man.add("林 花音　　");
+                man.add("伊達 純夏　");
+                man.add("金子 真依　");
+                man.add("楽満 美優　");
+                man.add("松崎 麻美　");
+                man.add("深田 麻莉　");
+                man.add("天野 朋子　");
+                
+                Collections.shuffle(man);
+
+                System.out.println("--並び替え後--");
+                System.out.println(man.get(0)     + " | " + man.get(5)   + " \t\t| " + man.get(10) + " | "+ man.get(16) + " \t\t| "+ man.get(22) + " | "+ man.get(28) +  " \t\t| "+ man.get(34) +  " | "+ man.get(40));
+                System.out.println(man.get(1)     + " | " + man.get(6)   + " \t\t| " + man.get(11) + " | "+ man.get(17) + " \t\t| "+ man.get(23) + " | "+ man.get(29) +  " \t\t| "+ man.get(35) +  " | "+ man.get(41));
+                System.out.println(man.get(2)     + " | " + man.get(7)   + " \t\t| " + man.get(12) + " | "+ man.get(18) + " \t\t| "+ man.get(24) + " | "+ man.get(30) +  " \t\t| "+ man.get(36) +  " | "+ man.get(42));
+                System.out.println(man.get(3)     + " | " + man.get(8)   + " \t\t| " + man.get(13) + " | "+ man.get(19) + " \t\t| "+ man.get(25) + " | "+ man.get(31) +  " \t\t| "+ man.get(37) +  " | "+ man.get(43));
+                System.out.println(man.get(4)     + " | " + man.get(9)   + " \t\t| " + man.get(14) + " | "+ man.get(20) + " \t\t| "+ man.get(26) + " | "+ man.get(32) +  " \t\t| "+ man.get(38) +  " | "+ man.get(44));
+                System.out.println("　　 　　　"  + " | " +"　　 　　　" + " \t\t| " + man.get(15) + " | "+ man.get(21) + " \t\t| "+ man.get(27) + " | "+ man.get(33) +  " \t\t| "+ man.get(39) +  " | "+ man.get(45)); 
+        }
+}
