@@ -1,15 +1,46 @@
 package trainig;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 public class Win5 {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
 		Random rnd = new Random();
 		int i;
+		int[] num = new int[5];
+		int count = 0;
 
-		for (i = 1; i <= 5; i++) {
+		System.out.println("1～18の中から5回選んで入力してね ♡\n同じ数字でもいいのよ ♡");
+
+		for (i = 0; i <= 4; i++) {
+			String str = reader.readLine();
+			num[i] = Integer.parseInt(str);
+		}
+
+		for (i = 0; i <= 4; i++) {
 			int win5 = rnd.nextInt(17) + 1;
-			System.out.println(i + "レース目 " + win5);
+			System.out.println(i + 1 + "レース目 " + win5);
+			if (win5 == num[i]) {
+				count++;
+			}
+		}
+		if (count < 1) {
+			System.out.println("ざぁこ♡");
+		} else if (count < 2) {
+			System.out.println("やるやん");
+		} else if (count < 3) {
+			System.out.println("まぐれかよ");
+		} else if (count < 4) {
+			System.out.println("今日だけ運いいやん");
+		} else if (count < 5) {
+			System.out.println("ワンちゃん!?");
+		} else {
+			System.out.println("こっちみんな");
 		}
 	}
 }
