@@ -1,0 +1,369 @@
+create table dept(
+deptno varchar2(2) primary key,
+dname varchar2(50) not null,
+loc varchar2(100)
+);
+create table emp(
+empno varchar2(3) primary key,  --社員NO
+ename varchar2(20) not null,   --社員名
+superior varchar2(20),   --上司
+hiredate date not null,　　--入社日
+sal number not null,　　--給与 
+job varchar2(30),  --職種
+deptno varchar2(2),  --部署NO
+/*
+部署テーブルのdeptno(部署NO)フィールドを
+外部参照制約する制約を付加する。
+*/
+constraint fk_deptno  foreign key(deptno) references dept(deptno)
+);
+
+/*3.1*/
+/*dept*/
+insert into dept values ('01','システム企画本部','東京都江東区豊洲3-3-3');
+INSERT INTO dept VALUES ('02','ソリューション事業部','神奈川県川崎市中原区
+上小田中 4-1-1'); 
+INSERT INTO dept VALUES ('03','営業部','大阪府大阪市中央区城見 1-4-24'); 
+INSERT INTO dept VALUES ('04','総務部',NULL); 
+commit;
+
+/*emp*/
+insert into emp values ('001','鈴木　仁',null,'2000/01/01',600000,'PL','01');
+INSERT INTO emp VALUES ('002','佐藤 幸助','鈴木 仁','2000/03/22',350000,'ブリッジ SE','01'); 
+INSERT INTO emp VALUES ('003', '高橋 ひとみ', NULL, '2000/01/01', 500000, 'PL', '02'); 
+INSERT INTO emp VALUES ('004', '大前 貢', '鈴木 仁', '2000/04/01', 320000, 'SE', '01'); 
+INSERT INTO emp VALUES ('005', '真田 博之', '鈴木 仁', '2001/04/01', 300000, 'SE', '01'); 
+INSERT INTO emp VALUES ('006', '大城 勉', '鈴木 仁', '2001/04/01', 300000, 'SE', '01'); 
+INSERT INTO emp VALUES ('007', '神城 陣', '高橋 ひとみ', '2001/04/01', 280000, 'PG', '02'); 
+INSERT INTO emp VALUES ('008', '結城 瞳', '高橋 ひとみ', '2002/04/01', 280000, 'PG', '02'); 
+INSERT INTO emp VALUES ('009', '博多 弁', '高橋 ひとみ', '2003/04/01', 260000, 'PG', '02'); 
+INSERT INTO emp VALUES ('010', '小山 浩', '高橋 ひとみ', '2006/04/01', 180000, 'デザイナー', '02'); 
+commit;
+
+/*4.1*/
+select * from dept;
+
+/*4.2*/
+select ename, superior, hiredate from emp;
+
+/*4.3*/
+select ename as "社員名", superior as "上司", sal as "給与" from emp;
+
+/*4.4*/
+select distinct job as JOB from emp;
+
+/*4.5*/
+select * from dept where deptno = '02';
+
+/*4.6*/
+select empno, ename, hiredate, job from emp where job = 'PG';
+
+/*5.1*/
+update dept set dname = '人事部' where deptno = 4;
+
+/*5.2*/
+update emp set superior = '鈴木　仁', sal = 290000, job = 'SE', deptno = '01' where empno = 8;
+
+commit;
+
+/*6.1*/
+delete from emp where empno = 6;
+
+/*7.1*/
+ INSERT INTO dept VALUES ('20','経理部','Redmond, WA 98052-7329 USA'); 
+ INSERT INTO dept VALUES ('21','水産食品開発部',NULL); 
+ INSERT INTO dept VALUES ('22','食品総合研究所',NULL); 
+ 
+ ROLLBACK; 
+ 
+ /*7.2*/
+ INSERT INTO dept VALUES ('20','経理部','Redmond, WA 98052-7329 USA'); 
+ 
+ SAVEPOINT sp1; 
+ 
+ INSERT INTO dept VALUES ('21','水産食品開発部',NULL); 
+ INSERT INTO dept VALUES ('22','食品総合研究所',NULL); 
+ 
+ ROLLBACK TO sp1; 
+ 
+ COMMIT; 
+ 
+ /*8.1*/
+ select ename, superior from emp where superior is not null;
+ 
+ /*8.2*/
+ select ename, sal, job from emp where sal<=300000;
+ 
+ /*8.3*/
+ select ename, job, deptno from emp where job = 'SE' and deptno = 1;
+ 
+ /*8.4*/
+ select ename, job, deptno from emp where job = 'PL' or deptno = 1;
+ 
+ /*8.5*/
+ select empno, ename from emp where ename like '%城%'; 
+ 
+ /*8.6*/
+ select ename, hiredate from emp where hiredate between '2000/01/01' and '2001/12/31';
+ 
+ /*9.1*/
+ select count(*) as "行数" from emp;
+ 
+ /*9.2*/
+ select max(sal) as "給与(最大値)", min(sal) as "給与(最小値)", sum(sal) as "給与(合計値)" from emp;
+ 
+ /*9.3*/
+ select max(hiredate) as "入社日" from emp;
+ 
+ /*10.1*/
+ select job, count(*) as "行数" from emp group by job;
+ 
+ /*!!!10.2!!!*/
+ select superior, count(*) from emp where superior is not null group by superior;
+ 
+ /*10.3*/
+ select job, round(avg(sal), 2) as "平均給与" from emp group by job;
+ 
+ /*11.1*/
+ select empno, ename from emp order by empno desc;
+ 
+ /*11.2*/
+ select deptno, ename, sal from emp order by deptno asc, sal desc;
+ 
+ /*12.1*/
+select empno, ename, dname from dept inner join emp on dept.deptno = emp.deptno;
+select e.empno, e.ename, d.dname from dept d inner join emp e on d.deptno = e.deptno; 
+ 
+ /*12.2*/
+select empno, ename, dname from dept left outer join emp on dept.deptno = emp.deptno;
+select e.empno, e.ename, d.dname from dept d left outer join emp e on d.deptno = e.deptno;
+
+/*12.3*/
+create table plan( 
+            planno varchar2(4) primary key,
+            empno VARCHAR2(3), 
+            scheduled_date DATE NOT NULL, 
+            plan VARCHAR2(200) NOT NULL, 
+            FOREIGN KEY(empno) REFERENCES emp(empno)
+);
+
+/*12.4*/
+insert into plan values ('0001','001', '2007/02/03', '14時からA社様との面談');
+INSERT INTO plan VALUES ('0002','003','2007/02/03','大阪出張'); 
+INSERT INTO plan VALUES ('0003','003','2007/02/05','大阪出張'); 
+INSERT INTO plan VALUES ('0004','001','2007/02/04','9 時 30 分から進捗報告
+会'); 
+INSERT INTO plan VALUES ('0005','001','2007/02/06','18 時から経営会議'); 
+
+COMMIT;
+
+/*12.5*/
+select p.planno, p.scheduled_date, p.plan, e.empno, e.ename, d.dname from plan p 
+inner join emp e on p.empno = e.empno
+inner join dept d on e.deptno = d.deptno
+order by planno asc;
+
+/*!!!!!12.6!!!!!!!*/
+select p.empno, e.ename, d.dname, count(*) from plan p
+inner join emp e on p.empno = e.empno
+inner join dept d on e.deptno = d.deptno
+group by p.empno, e.ename, d.dname;
+
+/*13.1*/
+select empno, ename, sal from emp 
+where sal >= (select avg(sal) from emp);
+
+/*!!!!!13.2!!!!!*/
+select empno, ename, job from emp 
+where job in(select job from emp 
+group by job 
+having count(*) >=2
+)
+order by empno asc;
+
+/*14.1*/
+create sequence dept_seq
+start with 10
+nocache;
+
+/*14.2*/
+insert into dept values (dept_seq.nextval, '経営統括部', 'Redmond, WA 98052-7329 USA');
+insert into dept values (dept_seq.nextval, 'ネットワーク事業部', 'NULL');
+commit;
+
+/*15.1*/
+create table seiki1(
+char_id number(2),
+char_type varchar2(20) not null,
+skill_id number(2) not null,
+skill_type varchar2(20) not null,
+category varchar2(10) not null
+);
+
+insert into seiki1 values (1, '勇者', 1, '弓を放つ', '攻撃');
+insert into seiki1 values (1, '勇者', 2, '盾を使う', '防御');
+insert into seiki1 values (2, '魔法使い', 3, '空を飛ぶ', '防御');
+insert into seiki1 values (2, '魔法使い', 4, '傷を癒す', '回復');
+insert into seiki1 values (3, '狩人', 1, '弓を放つ', '攻撃');
+insert into seiki1 values (3, '狩人', 5, '逃げる', '逃亡');
+insert into seiki1 values (4, '妖精', 6, '姿を消す', '逃亡');
+insert into seiki1 values (4, '妖精', 3, '空を飛ぶ', '防御');
+insert into seiki1 values (5, '犬', 7, '体当たり', '攻撃');
+insert into seiki1 values (5, '犬', 5, '逃げる', '逃亡');
+commit;
+
+/*answer*/
+select char_id as "キャラID", char_type as "キャラクター", 
+skill_id as "スキルID", skill_type as "スキル", category as "カテゴリ"
+from seiki1;
+
+/*15.2*/
+/*seiki2_1*/
+create table seiki2_1(
+char_id number(2),
+char_type varchar2(20) not null
+);
+
+insert into seiki2_1 values (1,'勇者');
+insert into seiki2_1 values (2,'魔法使い');
+insert into seiki2_1 values (3,'狩人');
+insert into seiki2_1 values (4,'妖精');
+insert into seiki2_1 values (5,'犬');
+commit;
+
+/*answer*/
+select char_id as "キャラID",  char_type as "キャラクター" 
+from seiki2_1;
+
+/*seiki2_2*/
+create table seiki2_2(
+skill_id number(2) not null,
+skill_type varchar2(20) not null,
+category varchar2(10) not null
+);
+
+insert into seiki2_2 values (1,'弓を放つ','攻撃');
+insert into seiki2_2 values (2,'盾を使う','防御');
+insert into seiki2_2 values (3,'空を飛ぶ','防御');
+insert into seiki2_2 values (4,'傷を癒す','回復');
+insert into seiki2_2 values (5,'逃げる','逃亡');
+insert into seiki2_2 values (6,'姿を消す','逃亡');
+insert into seiki2_2 values (7,'体当たり','攻撃');
+commit;
+
+/*answer*/
+select skill_id as "スキルID", skill_type as "スキル",
+category as "カテゴリ" from seiki2_2;
+
+/*seiki2_3*/
+create table seiki2_3(
+master_id number(2) not null,
+char_id number(2),
+skill_id number(2) not null
+);
+
+insert into seiki2_3 values (1,1,1);
+insert into seiki2_3 values  (2,1,2);
+insert into seiki2_3 values (3,2,3);
+insert into seiki2_3 values (4,2,4);
+insert into seiki2_3 values (5,3,1);
+insert into seiki2_3 values (6,3,5);
+insert into seiki2_3 values (7,4,6);
+insert into seiki2_3 values (8,4,3);
+insert into seiki2_3 values (9,5,7);
+insert into seiki2_3 values (10,5,5);
+commit;
+
+/*answer*/
+select master_id as "保持スキル管理ID", char_id as "キャラID", 
+skill_id as "スキルID" from seiki2_3;
+
+/*15.3*/
+/*seiki3_1*/
+create table seiki3_1(
+char_id number(2) not null,
+char_type varchar2(20) not null
+);
+
+insert into seiki3_1 values (1,'勇者');
+insert into seiki3_1 values (2,'魔法使い');
+insert into seiki3_1 values (3,'狩人');
+insert into seiki3_1 values (4,'妖精');
+insert into seiki3_1 values (5,'犬');
+commit;
+
+/*answer*/
+select char_id as "キャラID",  char_type as "キャラクター" 
+from seiki3_1;
+
+/*seiki3_2*/
+create table seiki3_2(
+skill_id number(2) not null,
+skill_type varchar2(20) not null,
+category_id number(2) not null
+);
+
+insert into seiki3_2 values (1,'弓を放つ',1);
+insert into seiki3_2 values (2,'盾を使う',2);
+insert into seiki3_2 values (3,'空を飛ぶ',2);
+insert into seiki3_2 values (4,'傷を癒す',3);
+insert into seiki3_2 values (5,'逃げる',4);
+insert into seiki3_2 values (6,'姿を消す',4);
+insert into seiki3_2 values (7,'体当たり',1);
+commit;
+
+/*answer*/
+select skill_id as "スキルID", skill_type as "スキル",
+category_id as "カテゴリID" from seiki3_2;
+
+/*seiki3_3*/
+create table seiki3_3(
+category_id number(2) not null,
+category varchar2(10) not null
+);
+
+insert into seiki3_3 values (1,'攻撃');
+insert into seiki3_3 values (2,'防御');
+insert into seiki3_3 values (3,'回復');
+insert into seiki3_3 values (4,'逃亡');
+commit;
+
+/*answer*/
+select category_id as "カテゴリID", category as "カテゴリ"
+from seiki3_3;
+
+/*seiki3_4*/
+create table seiki3_4(
+master_id number(2) not null,
+char_id number(2),
+skill_id number(2) not null
+);
+
+insert into seiki3_4 values (1,1,1);
+insert into seiki3_4 values  (2,1,2);
+insert into seiki3_4 values (3,2,3);
+insert into seiki3_4 values (4,2,4);
+insert into seiki3_4 values (5,3,1);
+insert into seiki3_4 values (6,3,5);
+insert into seiki3_4 values (7,4,6);
+insert into seiki3_4 values (8,4,3);
+insert into seiki3_4 values (9,5,7);
+insert into seiki3_4 values (10,5,5);
+commit;
+
+/*answer*/
+select master_id as "保持スキル管理ID", char_id as "キャラID", 
+skill_id as "スキルID" from seiki3_4;
+
+commit;
+
+/*テストの確かめ*/
+create table a(
+id number(2),
+category number(2)
+);
+
+insert into a values (1,1);
+insert into a values (2,1);
+select id, category from a group by category;
+
