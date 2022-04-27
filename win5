@@ -1,0 +1,15 @@
+package trainig;
+
+import java.util.Random;
+
+public class Win5 {
+	public static void main(String args[]) {
+		Random rnd = new Random();
+		int i;
+
+		for (i = 1; i <= 5; i++) {
+			int win5 = rnd.nextInt(17) + 1;
+			System.out.println(i + "レース目 " + win5);
+		}
+	}
+}
