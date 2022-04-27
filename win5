@@ -15,7 +15,7 @@ public class Win5 {
 		int[] num = new int[5];
 		int count = 0;
 
-		System.out.println("1～18の中から5回選んで入力してね ♡\n同じ数字でもいいのよ ♡");
+		System.out.println("1～18の番号の中から5回選んで入力してね ♡\n同じ番号を選んでもいいのよ ♡");
 
 		for (i = 0; i <= 4; i++) {
 			String str = reader.readLine();
@@ -24,17 +24,24 @@ public class Win5 {
 
 		for (i = 0; i <= 4; i++) {
 			int win5 = rnd.nextInt(17) + 1;
-			System.out.println(i + 1 + "レース目 " + win5);
+			System.out.println("\n" + (i + 1) + "レース目の1着は " + win5 + " 番");
+			System.out.println("あなたの選んだ馬の番号は " + num[i] + " 番");
 			if (win5 == num[i]) {
+				System.out.println("おめ\n");
 				count++;
+			} else {
+				System.out.println("あれれぇ？\n");
 			}
 		}
+		
+		System.out.println("結果発表");
+		
 		if (count < 1) {
 			System.out.println("ざぁこ♡");
 		} else if (count < 2) {
-			System.out.println("やるやん");
-		} else if (count < 3) {
 			System.out.println("まぐれかよ");
+		} else if (count < 3) {
+			System.out.println("やるやん");
 		} else if (count < 4) {
 			System.out.println("今日だけ運いいやん");
 		} else if (count < 5) {
