@@ -12,11 +12,11 @@ public class Sekigae_random {
                 man.add("伊藤 晃　　");
                 man.add("宮井 翼　　");
                 man.add("古川 直輝　");
-                man.add("荻 雅都　　");
+                man.add("荻   雅都　");
                 man.add("柳下 渉平　");
                 man.add("中林 裕人　");
                 man.add("小澤 竜一　");
-                man.add("畑 航介　　");
+                man.add("畑   航介　");
                 man.add("内野 晃希　");
                 man.add("早坂 涼佑　");
                 man.add("野口 太一　");
@@ -50,7 +50,7 @@ public class Sekigae_random {
                 man.add("水上 萌々子");
                 man.add("滝田 菜美　");
                 man.add("松本 希望　");
-                man.add("林 花音　　");
+                man.add("林   花音　");
                 man.add("伊達 純夏　");
                 man.add("金子 真依　");
                 man.add("楽満 美優　");
