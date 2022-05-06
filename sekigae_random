@@ -66,6 +66,6 @@ public class Sekigae_random {
                 System.out.println(man.get(2)     + " | " + man.get(7)   + " \t\t| " + man.get(12) + " | "+ man.get(18) + " \t\t| "+ man.get(24) + " | "+ man.get(30) +  " \t\t| "+ man.get(36) +  " | "+ man.get(42));
                 System.out.println(man.get(3)     + " | " + man.get(8)   + " \t\t| " + man.get(13) + " | "+ man.get(19) + " \t\t| "+ man.get(25) + " | "+ man.get(31) +  " \t\t| "+ man.get(37) +  " | "+ man.get(43));
                 System.out.println(man.get(4)     + " | " + man.get(9)   + " \t\t| " + man.get(14) + " | "+ man.get(20) + " \t\t| "+ man.get(26) + " | "+ man.get(32) +  " \t\t| "+ man.get(38) +  " | "+ man.get(44));
-                System.out.println("　　 　　　"  + " | " +"　　 　　　" + " \t\t| " + man.get(15) + " | "+ man.get(21) + " \t\t| "+ man.get(27) + " | "+ man.get(33) +  " \t\t| "+ man.get(39) +  " | "+ man.get(45)); 
+                System.out.println("　　 　 　　"  + " | " +"　　 　 　　" + " \t\t| " + man.get(15) + " | "+ man.get(21) + " \t\t| "+ man.get(27) + " | "+ man.get(33) +  " \t\t| "+ man.get(39) +  " | "+ man.get(45)); 
         }
 }
